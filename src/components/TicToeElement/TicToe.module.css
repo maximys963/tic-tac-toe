@@ -1,0 +1,10 @@
+.tic_element_container {
+    height: 165px;
+    width: 165px;
+    border: 2px solid #EBB666;
+}
+
+.tic_element_container:hover {
+    background-color: #44444E;
+    cursor: pointer;
+}
