@@ -1,4 +1,8 @@
 .tic_element_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     height: 165px;
     width: 165px;
     border: 2px solid #EBB666;

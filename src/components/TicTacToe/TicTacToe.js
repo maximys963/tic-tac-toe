@@ -8,18 +8,28 @@ TicTacToe.propTypes = {
 };
 
 export function TicTacToe(props) {
-    const { gameArray } = props;
+    const {
+        gameArray,
+        setCellValue,
+        setAiValue
+    } = props;
+
     return (
         <div className={styles.tic_container}>
-            {gameArray.map(((row, index) => (
+            {gameArray.map(((row, rowIndex) => (
                 <div
                     className={styles.tic_row}
-                    key={index}
+                    key={rowIndex}
                 >
                     {row.map((cell, cellIndex) => (
                     <TicToeElement
-                        cell={cell}
-                        key={`${index}_${cellIndex}`}
+                        setCellValue = {setCellValue}
+                        setAiValue = {setAiValue}
+                        rowIndex={rowIndex}
+                        cellIndex={cellIndex}
+                        sign={cell.element}
+                        color={cell.color}
+                        key={`${rowIndex}_${cellIndex}`}
                     />
                 ))}
                 </div>
