@@ -2,43 +2,40 @@ import { useState } from 'react';
 import { getRandomFreeCellIndexes } from './ai/getRandomFreeCellIndexes';
 
 const initialArray = [
-    [{ element: '', color: null}, {element: '', color: null}, {element: '', color: null}],
-    [{ element: '', color: null}, {element: '', color: null}, {element: '', color: null}],
-    [{ element: '', color: null}, {element: '', color: null}, {element: '', color: null}],
-]
+  [{ element: '', color: null }, { element: '', color: null }, { element: '', color: null }],
+  [{ element: '', color: null }, { element: '', color: null }, { element: '', color: null }],
+  [{ element: '', color: null }, { element: '', color: null }, { element: '', color: null }],
+];
 
 export function useApp() {
-    const [gameArray, setGameArrayValue ] = useState(initialArray)
+  const [gameBoard, setGameBoard] = useState(initialArray);
 
-    const setCellValue = (rowIndex, cellIndex, value) => {
-        const draftCell = gameArray[rowIndex][cellIndex];
-        if(draftCell.element === ''){
-            draftCell.element = value;
+  const setCellValue = (rowIndex, cellIndex, value) => {
+    const draftCell = gameBoard[rowIndex][cellIndex];
+    if (draftCell.element === '') {
+      draftCell.element = value;
 
-            const draftState = [...gameArray];
-            draftState[rowIndex][cellIndex] = {
-                element: value,
-                color: null
-            };
+      const draftState = [...gameBoard];
+      draftState[rowIndex][cellIndex] = {
+        element: value,
+        color: null,
+      };
 
-            setGameArrayValue(draftState);
-        }
+      setGameBoard(draftState);
     }
+  };
 
-    const setAiValue = () => {
-        const freeCellIndexes = getRandomFreeCellIndexes(gameArray);
-        if(freeCellIndexes.length !== 0){
-            console.log('freeCellIndexes', freeCellIndexes)
-            const [rowIndex, cellIndex] = freeCellIndexes;
-            setCellValue(rowIndex, cellIndex, 'x')
-        }
+  const setAiValue = () => {
+    const freeCellIndexes = getRandomFreeCellIndexes(gameBoard);
+    if (freeCellIndexes.length !== 0) {
+      const [rowIndex, cellIndex] = freeCellIndexes;
+      setCellValue(rowIndex, cellIndex, 'x');
     }
+  };
 
-
-
-    return{
-        gameArray,
-        setCellValue,
-        setAiValue
-    }
+  return {
+    gameBoard,
+    setCellValue,
+    setAiValue,
+  };
 }
