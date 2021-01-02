@@ -10,7 +10,7 @@ export function minimax(board, depth, isMaximizing, ai, player){
     // check winner
     const winner = checkVictory(board);
     if(winner){
-        return scoresDesk[winner]
+        return scoresDesk[winner.element];
     }
 
     if(isMaximizing) {

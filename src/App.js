@@ -6,20 +6,34 @@ import { useApp } from './useApp';
 function App() {
   const {
     gameBoard,
-    setCellValue,
-    setAiValue,
-    playerSigns
+    handleCellClick,
+    playerSigns,
+    setGameBoard,
+    colorCombination,
+    isGameFinished,
+    resetGame
   } = useApp();
 
   return (
     <div className="App">
       <div className="game_title">Tic Tac Toe</div>
       <TicTacToe
+        isGameFinished={isGameFinished}
         gameBoard={gameBoard}
-        setCellValue={setCellValue}
-        setAiValue={setAiValue}
+        handleCellClick={handleCellClick}
         playerSigns={playerSigns}
+        setGameBoard={setGameBoard}
+        colorCombination={colorCombination}
       />
+        {isGameFinished
+            ? <div
+                className="button"
+                onClick={resetGame}
+              >
+                Play Again ?
+               </div>
+            : null
+        }
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TicToe.module.css';
-import { useTicToeElement } from './useTicToeElement';
 import { Cross } from '../Cross/Cross';
 import { Circle } from '../Circle/Circle';
 
@@ -11,17 +10,11 @@ export const TicToeElement = (props) => {
     color,
     rowIndex,
     cellIndex,
-    setCellValue,
-    setAiValue,
-    playerSigns
+    handleCellClick,
+    playerSigns,
+    isGameFinished
   } = props;
 
-  const {
-    handleCellClick,
-  } = useTicToeElement(
-    setCellValue,
-    setAiValue,
-  );
 
   const getTicTacToeSign = (sign) => {
     const ticToeSigns = {
@@ -33,7 +26,11 @@ export const TicToeElement = (props) => {
   };
 
   return (
-    <div className={styles.tic_element_container} onClick={() => handleCellClick(rowIndex, cellIndex, playerSigns.player)}>
+    <div className={styles.tic_element_container} onClick={
+      !isGameFinished
+          ? () => handleCellClick(rowIndex, cellIndex, playerSigns.player)
+          : null
+      }>
       {getTicTacToeSign(sign)}
     </div>
   );

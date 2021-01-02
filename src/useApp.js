@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { checkFreeCells } from "./ai/checkFreeCells";
+import { checkVictory } from "./helpers/checkVictory";
 import { bestMove} from "./ai/bestMove";
-import { getRandomFreeCellIndexes } from './ai/getRandomFreeCellIndexes';
 
 const initialArray = [
   [{ element: '', color: null }, { element: '', color: null }, { element: '', color: null }],
@@ -10,7 +11,10 @@ const initialArray = [
 
 export function useApp() {
   const [gameBoard, setGameBoard] = useState(initialArray);
-  const [playerSigns, setPlayerSigns] = useState({ai: 'o', player: 'x'})
+  const [playerSigns] = useState({ai: 'o', player: 'x'})
+  const [isGameFinished, setIsGameFinished] = useState(false);
+
+  console.log('gameBoard', gameBoard)
 
   const setCellValue = (rowIndex, cellIndex, value) => {
     const draftCell = gameBoard[rowIndex][cellIndex];
@@ -27,14 +31,46 @@ export function useApp() {
     }
   };
 
-  const setAiValue = () => {
-    bestMove(gameBoard, playerSigns.ai, playerSigns.player, setGameBoard);
+  const handleCellClick = (rowIndex, cellIndex, value) => {
+    if(gameBoard[rowIndex][cellIndex].element === ''){
+      setCellValue(rowIndex, cellIndex, value);
+      const isFreeCellsExists = checkFreeCells(gameBoard);
+      if(isFreeCellsExists) {
+        bestMove(gameBoard, playerSigns.ai, playerSigns.player, setGameBoard);
+      }
+      const winner = checkVictory(gameBoard);
+      if(winner){
+        setIsGameFinished(true)
+        if(winner.element !== 'tie'){
+          colorCombination(winner.combination);
+        }
+      }
+    }
   };
+
+  const colorCombination = (indexes) => {
+    const updatedBoard = [...gameBoard];
+    indexes.forEach((index) => {
+      updatedBoard[index.row][index.cell].color = '#3498db';
+    })
+
+    setGameBoard(updatedBoard);
+  }
+
+  const resetGame = () => {
+    setIsGameFinished(false);
+    setGameBoard( [
+        [{ element: '', color: null }, { element: '', color: null }, { element: '', color: null }],
+        [{ element: '', color: null }, { element: '', color: null }, { element: '', color: null }],
+        [{ element: '', color: null }, { element: '', color: null }, { element: '', color: null }]
+  ])
+  }
 
   return {
     gameBoard,
-    setCellValue,
-    setAiValue,
-    playerSigns
+    handleCellClick,
+    playerSigns,
+    isGameFinished,
+    resetGame
   };
 }
