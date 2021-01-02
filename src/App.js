@@ -8,6 +8,7 @@ function App() {
     gameBoard,
     setCellValue,
     setAiValue,
+    playerSigns
   } = useApp();
 
   return (
@@ -17,6 +18,7 @@ function App() {
         gameBoard={gameBoard}
         setCellValue={setCellValue}
         setAiValue={setAiValue}
+        playerSigns={playerSigns}
       />
     </div>
   );

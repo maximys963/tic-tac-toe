@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { bestMove} from "./ai/bestMove";
 import { getRandomFreeCellIndexes } from './ai/getRandomFreeCellIndexes';
 
 const initialArray = [
@@ -9,6 +10,7 @@ const initialArray = [
 
 export function useApp() {
   const [gameBoard, setGameBoard] = useState(initialArray);
+  const [playerSigns, setPlayerSigns] = useState({ai: 'o', player: 'x'})
 
   const setCellValue = (rowIndex, cellIndex, value) => {
     const draftCell = gameBoard[rowIndex][cellIndex];
@@ -26,16 +28,13 @@ export function useApp() {
   };
 
   const setAiValue = () => {
-    const freeCellIndexes = getRandomFreeCellIndexes(gameBoard);
-    if (freeCellIndexes.length !== 0) {
-      const [rowIndex, cellIndex] = freeCellIndexes;
-      setCellValue(rowIndex, cellIndex, 'x');
-    }
+    bestMove(gameBoard, playerSigns.ai, playerSigns.player, setGameBoard);
   };
 
   return {
     gameBoard,
     setCellValue,
     setAiValue,
+    playerSigns
   };
 }

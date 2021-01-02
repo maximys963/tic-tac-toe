@@ -13,6 +13,7 @@ export const TicToeElement = (props) => {
     cellIndex,
     setCellValue,
     setAiValue,
+    playerSigns
   } = props;
 
   const {
@@ -32,7 +33,7 @@ export const TicToeElement = (props) => {
   };
 
   return (
-    <div className={styles.tic_element_container} onClick={() => handleCellClick(rowIndex, cellIndex, 'o')}>
+    <div className={styles.tic_element_container} onClick={() => handleCellClick(rowIndex, cellIndex, playerSigns.player)}>
       {getTicTacToeSign(sign)}
     </div>
   );

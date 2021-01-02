@@ -12,6 +12,7 @@ export function TicTacToe(props) {
     gameBoard,
     setCellValue,
     setAiValue,
+    playerSigns
   } = props;
 
   return (
@@ -28,6 +29,7 @@ export function TicTacToe(props) {
               rowIndex={rowIndex}
               cellIndex={cellIndex}
               sign={cell.element}
+              playerSigns={playerSigns}
               color={cell.color}
               key={`${rowIndex}_${cellIndex}`}
             />

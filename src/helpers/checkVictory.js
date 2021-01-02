@@ -28,8 +28,17 @@ export function checkVictory(board) {
     return board[0][2].element
   }
 
-  return null
+  //check tie
 
+  for(let i = 0; i < 3; i++){
+    for(let j = 0; j < 3; j++){
+      if(board[i][j].element === ''){
+        return null
+      }
+    }
+  }
+
+  return 'tie'
 }
 
 
