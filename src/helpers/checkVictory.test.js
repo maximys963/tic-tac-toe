@@ -92,4 +92,14 @@ describe('test checkVictory cases', () => {
     const isVictory = checkVictory(testBoard);
     expect(isVictory).toBe(null);
   });
+
+  test('tie case', () => {
+    const testBoard = [
+      [{ element: 'o', color: null }, { element: 'o', color: null }, { element: 'x', color: null }],
+      [{ element: 'x', color: null }, { element: 'x', color: null }, { element: 'o', color: null }],
+      [{ element: '0', color: null }, { element: 'x', color: null }, { element: 'x', color: null }],
+    ];
+    const isVictory = checkVictory(testBoard);
+    expect(isVictory).toBe('tie');
+  });
 });

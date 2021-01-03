@@ -10,8 +10,9 @@ TicTacToe.propTypes = {
 export function TicTacToe(props) {
   const {
     gameBoard,
-    setCellValue,
-    setAiValue,
+    handleCellClick,
+    playerSigns,
+    isGameFinished
   } = props;
 
   return (
@@ -23,11 +24,12 @@ export function TicTacToe(props) {
         >
           {row.map((cell, cellIndex) => (
             <TicToeElement
-              setCellValue={setCellValue}
-              setAiValue={setAiValue}
+              handleCellClick={handleCellClick}
+              isGameFinished={isGameFinished}
               rowIndex={rowIndex}
               cellIndex={cellIndex}
               sign={cell.element}
+              playerSigns={playerSigns}
               color={cell.color}
               key={`${rowIndex}_${cellIndex}`}
             />

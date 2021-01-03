@@ -4,15 +4,3 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.game_title {
-  color: #EBB666;
-  font-size: 37px;
-  margin-top: 20px;
-}
