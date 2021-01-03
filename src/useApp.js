@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { checkFreeCells } from "./ai/checkFreeCells";
 import { checkVictory } from "./helpers/checkVictory";
 import { bestMove} from "./ai/bestMove";
