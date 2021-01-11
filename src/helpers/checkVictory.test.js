@@ -10,7 +10,7 @@ describe('test checkVictory cases', () => {
       [{ element: '', color: null }, { element: '', color: null }, { element: '', color: null }],
     ];
     const isVictory = checkVictory(testBoard);
-    expect(isVictory).toBe(testSign)
+    expect(isVictory.element).toBe(testSign)
   });
 
   test('2 row victory for X player', () => {
@@ -20,7 +20,7 @@ describe('test checkVictory cases', () => {
       [{ element: '', color: null }, { element: '', color: null }, { element: '', color: null }],
     ];
     const isVictory = checkVictory(testBoard);
-    expect(isVictory).toBe(testSign)
+    expect(isVictory.element).toBe(testSign)
   });
 
   test('3 row victory for X player', () => {
@@ -30,7 +30,7 @@ describe('test checkVictory cases', () => {
       [{ element: testSign, color: null }, { element: testSign, color: null }, { element: testSign, color: null }],
     ];
     const isVictory = checkVictory(testBoard);
-    expect(isVictory).toBe(testSign)
+    expect(isVictory.element).toBe(testSign)
   });
 
   test('1 column victory for X player', () => {
@@ -40,7 +40,7 @@ describe('test checkVictory cases', () => {
       [{ element: testSign, color: null }, { element: '', color: null }, { element: '', color: null }],
     ];
     const isVictory = checkVictory(testBoard, 'x');
-    expect(isVictory).toBeTruthy();
+    expect(isVictory.element).toBeTruthy();
   });
 
   test('2 column victory for X player', () => {
@@ -50,7 +50,7 @@ describe('test checkVictory cases', () => {
       [{ element: '', color: null }, { element: testSign, color: null }, { element: '', color: null }],
     ];
     const isVictory = checkVictory(testBoard);
-    expect(isVictory).toBe(testSign);
+    expect(isVictory.element).toBe(testSign);
   });
 
   test('3 column victory for X player', () => {
@@ -60,7 +60,7 @@ describe('test checkVictory cases', () => {
       [{ element: '', color: null }, { element: '', color: null }, { element: testSign, color: null }],
     ];
     const isVictory = checkVictory(testBoard);
-    expect(isVictory).toBe(testSign);
+    expect(isVictory.element).toBe(testSign);
   });
 
   test('left diagonal victory for X player', () => {
@@ -70,7 +70,7 @@ describe('test checkVictory cases', () => {
       [{ element: '', color: null }, { element: '', color: null }, { element: testSign, color: null }],
     ];
     const isVictory = checkVictory(testBoard);
-    expect(isVictory).toBe(testSign);
+    expect(isVictory.element).toBe(testSign);
   });
 
   test('right diagonal victory for X player', () => {
@@ -80,7 +80,7 @@ describe('test checkVictory cases', () => {
       [{ element: testSign, color: null }, { element: '', color: null }, { element: '', color: null }],
     ];
     const isVictory = checkVictory(testBoard);
-    expect(isVictory).toBe(testSign);
+    expect(isVictory.element).toBe(testSign);
   });
 
   test('negative case', () => {
@@ -100,6 +100,6 @@ describe('test checkVictory cases', () => {
       [{ element: '0', color: null }, { element: 'x', color: null }, { element: 'x', color: null }],
     ];
     const isVictory = checkVictory(testBoard);
-    expect(isVictory).toBe('tie');
+    expect(isVictory.element).toBe('tie');
   });
 });
